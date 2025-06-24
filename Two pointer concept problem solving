@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int findLargestCommonElement(std::vector<int>& a, std::vector<int>& b) {
+    std::sort(a.begin(), a.end());
+    std::sort(b.begin(), b.end());
+
+    int i = a.size() - 1;
+    int j = b.size() - 1;
+
+    while (i >= 0 && j >= 0) {
+        if (a[i] == b[j])
+            return a[i]; // Found the largest common element
+        else if (a[i] > b[j])
+            i--;
+        else
+            j--;
+    }
+
+    return -1; // No common element found
+}
+
+int main() {
+    std::vector<int> arr1 = {5, 20, 15, 10, 30};
+    std::vector<int> arr2 = {20, 3, 30, 7, 9};
+
+    int result = findLargestCommonElement(arr1, arr2);
+
+    if (result != -1)
+        std::cout << "Largest common element: " << result << std::endl;
+    else
+        std::cout << "No common element found.\n";
+
+    return 0;
+}
